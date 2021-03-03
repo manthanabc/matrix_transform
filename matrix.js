@@ -84,12 +84,13 @@ function draw() {
   line(0, height/2, 0, -height/2);
   line(width/2, 0, -width/2, 0);
   
-  i[0] = ixslider.value();
+  i[0]= ixslider.value();
   i[1] = iyslider.value();
   
-  j[0] = jxslider.value();
-  j[1] = jyslider.value();
-  
+  // j[0] = jxslider.value();
+  // j[1] = jyslider.value();
+  j[0] = i[1];
+  j[1] = i[0];
   
   resolution = resSlider.value();
 }
