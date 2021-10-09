@@ -13,37 +13,32 @@ let resSlider ;
 function setup() {
   createCanvas(500, 500);
   background(200);
-
-  strokeWeight(0);
-  textSize(12);
-  textStyle(NORMAL);
-  text('resolution', 10, 15);
   
   resSlider = createSlider(5, 80, 30, 0.1);
-  resSlider.position(width + 50, 50);
+  resSlider.position(width - 150, 50);
   resSlider.style('width', '80px');
   
   ixInput = createSlider(-1, 1, 0, 0.01);
-  ixInput.position(width + 50, 100);
+  ixInput.position(width - 150, 90);
   ixInput.style('width', '80px');
   
   iyInput = createSlider(-1, 2, 1, 0.01);
-  iyInput.position(width + 50, 150);
+  iyInput.position(width - 150, 130);
   iyInput.style('width', '80px');
-  iyInput.input(iyinput);
 
   jxslider = createSlider(0, 2, 1, 0.01);
-  jxslider.position(width + 50, 250);
+  jxslider.position(width - 150, 160);
   jxslider.style('width', '80px');
   
   jyslider = createSlider(-1, 1, 0, 0.01);
-  jyslider.position(width + 50, 300);
+  jyslider.position(width - 150, 190);
   jyslider.style('width', '80px');
 
 }
 
 
 function draw() {
+  push();
   // tranforming to use "normalish cordinates"
   translate(width/2, height/2);
   scale(1,-1);
@@ -91,26 +86,33 @@ function draw() {
   line(width/2, 0, -width/2, 0);
   
   i[0] = ixInput.value();
-  //i[0] = 0;
   i[1] = iyInput.value();
   
   j[0] = jxslider.value();
   j[1] = jyslider.value();
-  //j[0] = i[1];
-  //j[1] = i[0];
-  
+ 
+  pop();
   resolution = resSlider.value();
+  strokeWeight(0);
+  textSize(17);
+  stroke(230);
+  text('resolution', 350, 30);
+
+  resolution = resSlider.value();
+  strokeWeight(0);
+  textSize(17);
+  stroke(230);         
+  text('i x', 370, 70);
+         
+  text('i y', 370, 110);
+
+  text('j x', 370, 140);
+
+  text('j y', 370, 170);
 }
 
 function transform(x, y, i, j) {
   let nx = j[0] * x + i[0] * y;
   let ny = j[1] * x + i[1] * y;
   return [nx, ny];
-}
-
-function iyinput() {
-  if (this.value){
-    i[1] = pareseInt(this.value);
-  }
-    //i[0] = parseInt(this.value);
 }
